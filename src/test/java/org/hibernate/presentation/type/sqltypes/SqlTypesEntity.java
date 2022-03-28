@@ -18,7 +18,7 @@ public class SqlTypesEntity {
 	@Id
 	private Integer id;
 	private String name;
-	private UUID uuid;;
+	private UUID uuid;
 	private InetAddress inetAddress;
 	@JdbcTypeCode( SqlTypes.JSON )
 	private Map<String, String> payload;

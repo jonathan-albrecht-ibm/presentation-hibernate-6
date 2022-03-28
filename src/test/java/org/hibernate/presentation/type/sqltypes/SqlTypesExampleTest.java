@@ -9,6 +9,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -33,9 +34,12 @@ public class SqlTypesExampleTest {
 			// restrict based on it
 			scope.inTransaction( (session) -> {
 				final String hql = "select e from SqlTypesEntity e where e.payload = :payload";
+				Map<String, String> map = new LinkedHashMap<>();
+				map.put( "type", "A" );
+				map.put( "name", "abc" );
 				final SqlTypesEntity entity = session
 						.createSelectionQuery( hql, SqlTypesEntity.class )
-						.setParameter("payload", Map.of( "type", "A", "name", "abc" ) )
+						.setParameter("payload", map )
 						.getSingleResultOrNull();
 				assertThat( entity ).isNotNull();
 				assertThat( entity.getPayload() ).isNotNull();
@@ -48,7 +52,10 @@ public class SqlTypesExampleTest {
 	@BeforeEach
 	public void createData(SessionFactoryScope scope) {
 		scope.inTransaction( (session) -> {
-			session.persist( new SqlTypesEntity(1, "my entity", Map.of("name", "abc", "type", "A" ) ) );
+			Map<String, String> map = new LinkedHashMap<>();
+			map.put( "name", "abc" );
+			map.put( "type", "A" );
+			session.persist( new SqlTypesEntity(1, "my entity", map ) );
 		} );
 	}
 
