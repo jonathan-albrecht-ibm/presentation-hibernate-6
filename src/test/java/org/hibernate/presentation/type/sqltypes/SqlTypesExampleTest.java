@@ -35,8 +35,8 @@ public class SqlTypesExampleTest {
 			scope.inTransaction( (session) -> {
 				final String hql = "select e from SqlTypesEntity e where e.payload = :payload";
 				Map<String, String> map = new LinkedHashMap<>();
-				map.put( "type", "A" );
 				map.put( "name", "abc" );
+				map.put( "type", "A" );
 				final SqlTypesEntity entity = session
 						.createSelectionQuery( hql, SqlTypesEntity.class )
 						.setParameter("payload", map )
