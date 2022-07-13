@@ -9,11 +9,6 @@
 gradle-app.setting
 .gradletasknamecache
 
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
-
-
-
 ################################################################
 ## Java
 
@@ -122,3 +117,6 @@ local.properties
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle/wrapper/gradle-wrapper.jar
